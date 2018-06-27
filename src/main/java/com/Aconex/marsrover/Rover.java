@@ -1,34 +1,20 @@
 package com.Aconex.marsrover;
 
-import org.omg.CORBA.Object;
-
 class Rover {
 
-    String direction = "N";
+
+    Direction direction = Direction.NORTH;
     String execute(String commands) {
         for(char c : commands.toCharArray()) {
-            if(c == 'R'){
-                direction =rotateRight();
+            if (c == 'R') {
+                direction = direction.right();
+
             }
-            if(c == 'L')
-            direction = rotateLeft();
+            if (c == 'L') {
+                direction = direction.left();
+            }
         }
-       return "0:0:"+direction;
+       return "0:0:"+ direction.value();
     }
 
-    private String rotateLeft() {
-        if(direction == "N") return "W";
-        if(direction == "W") return "S";
-        if(direction == "S") return "E";
-        return "N";
-    }
-
-    private String rotateRight() {
-        if (direction == "N") return "E";
-        if (direction == "E")  return "S";
-        if (direction == "S")  return "W";
-        return "Nc";
-
-
-    }
 }
