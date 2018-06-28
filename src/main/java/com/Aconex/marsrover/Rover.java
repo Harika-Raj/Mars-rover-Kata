@@ -1,9 +1,21 @@
 package com.Aconex.marsrover;
 
+import static com.Aconex.marsrover.Direction.*;
+
 class Rover {
 
+    private Grid grid;
+    
+    Direction direction = NORTH;
+    Coordinate coordinate = new Coordinate(0,0);
 
-    Direction direction = Direction.NORTH;
+
+    public Rover(Grid grid) {
+        this.grid = grid;
+    }
+
+
+
     String execute(String commands) {
         for(char c : commands.toCharArray()) {
             if (c == 'R') {
@@ -13,8 +25,10 @@ class Rover {
             if (c == 'L') {
                 direction = direction.left();
             }
+            if(c == 'M'){
+                coordinate = grid.nextCoordinateFor(coordinate, direction);
+            }
         }
-       return "0:0:"+ direction.value();
+       return coordinate.x() + ":" + coordinate.y() + ":" + direction.value();
     }
-
 }
