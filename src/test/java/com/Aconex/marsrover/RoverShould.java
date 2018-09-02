@@ -87,6 +87,8 @@ public class RoverShould {
             "LLMMMMM, 0:5:S"
             //        "lMMMMMMMMMMMMMMM, 5:0:w"
     })
+
+
     public void
     Move_south(String commands, String position){
         assertThat(rover.execute(commands),is(position));
